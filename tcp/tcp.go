@@ -14,6 +14,7 @@ type Progress struct {
 }
 
 type DialFn func(network, addr string) (net.Conn, error)
+type ListenFn func(network, addr string) (net.Listener, error)
 
 // TransferStreams launches two read-write goroutines and waits for signal from them
 func TransferStreams(con net.Conn, in io.Reader, out io.Writer) {
@@ -54,7 +55,7 @@ func TransferStreams(con net.Conn, in io.Reader, out io.Writer) {
 }
 
 // StartServer starts TCP listener
-func StartServer(proto string, port string) {
+func StartServer(listen ListenFn, proto string, port string) {
 	ln, err := net.Listen(proto, port)
 	if err != nil {
 		log.Fatalln(err)
