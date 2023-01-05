@@ -9,8 +9,6 @@ Install:
 go get -u github.com/dnachev/wg-nc
 ```
 
-Usage:
-
 ```
 Usage of wg-nc:
   -host string
